@@ -28,7 +28,7 @@ if (strlen($_SESSION['username']) < 1) {
     <div style="background-color:lightgray;position:relative;top:-26px;padding-bottom:30px">
       <hr>
       <h2 style="padding:5px">Ticket View</h2>
-      <div style="background-color:gray;margin:40px;border-radius:20px;box-shadow:5px 5px 10px 5px;">
+      <div style="background-color:gray;margin:40px;height:200px;border-radius:20px;box-shadow:5px 5px 10px 5px;">
       <?php
         $data_q = mysqli_query($conn, "select * from tickets.summary WHERE ID =".$_GET['ID']);
         if (mysqli_num_rows($data_q) > 0) {
