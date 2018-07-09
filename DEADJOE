@@ -1,0 +1,20 @@
+
+*** These modified files were found in JOE when it aborted on Sat Jul  7 15:53:32 2018
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+connectdb.php
+
+*** File 'connectdb.php'
+<?php
+$servername = "localhost";
+$username = "tickets";
+$password = "potatoFAMINE";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

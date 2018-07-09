@@ -1,0 +1,217 @@
+
+Type joehelp for editor shell commands
+
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe index.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe create_ticket.php 
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe index.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe create_ticket.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe index.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe create_ticket.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe index.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ 
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ joe index.php
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ mysql
+ERROR 1698 (28000): Access denied for user 'rldeckard'@'localhost'
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ su
+Password: 
+su: Authentication failure
+rldeckard@rldeckard-VirtualBox:/var/www/html/ticket_tracker$ sudo su
+[sudo] password for rldeckard: 
+root@rldeckard-VirtualBox:/var/www/html/ticket_tracker# mysql
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 45
+Server version: 10.0.34-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database tickets;
+Query OK, 1 row affected (0.15 sec)
+
+MariaDB [(none)]> create database users;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> use database tickets;
+ERROR 1049 (42000): Unknown database 'database'
+MariaDB [(none)]> use tickets;
+Database changed
+MariaDB [tickets]> delete users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near '' at line 1
+MariaDB [tickets]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| tickets            |
+| users              |
++--------------------+
+5 rows in set (0.05 sec)
+
+MariaDB [tickets]> delete users
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near '' at line 1
+MariaDB [tickets]> drop users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near 'users' at line 1
+MariaDB [tickets]> drop database users;
+Query OK, 0 rows affected (0.50 sec)
+
+MariaDB [tickets]> drop database 'users';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near ''users'' at line 1
+MariaDB [tickets]> drop database users;
+ERROR 1008 (HY000): Can't drop database 'users'; database doesn't exist
+MariaDB [tickets]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| tickets            |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [tickets]> use tickets
+Database changed
+MariaDB [tickets]> create table summary (summary,user,description,urgent,priority);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near 'user,description,urgent,priority)' at line 1
+MariaDB [tickets]> show table
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right 
+syntax to use near '' at line 1
+MariaDB [tickets]> show tables;
+Empty set (0.00 sec)
+
+MariaDB [tickets]> create table summary (id mediumint auto_increment,summary varc
+har(100),user varchar(50),description varchar(500),urgent smallint(10),priority s
+mallint(2));
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column
+ and it must be defined as a key
+MariaDB [tickets]> show table
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that c
+orresponds to your MariaDB server version for the right syntax to use near '' at 
+line 1
+MariaDB [tickets]> show tables;
+Empty set (0.00 sec)
+
+MariaDB [tickets]> create table summary (id mediumint auto_increment primary_key,
+summary varchar(100),user varchar(50),description varchar(500),urgent smallint(10
+),priority smallint(2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that c
+orresponds to your MariaDB server version for the right syntax to use near 'summa
+ry varchar(100),user varchar(50),description varchar(500),urgent smallint(1' at l
+ine 1
+MariaDB [tickets]> create table summary (id mediumint auto_increment,summary varc
+har(100),user varchar(50),description varchar(500),urgent smallint(10),priority s
+mallint(2), primary key (id) );
+Query OK, 0 rows affected (0.64 sec)
+
+MariaDB [tickets]> show tables
+    -> ;
++-------------------+
+| Tables_in_tickets |
++-------------------+
+| summary           |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [tickets]> create table users (id mediumint auto_increment, username varc
+har(50), name varchar(100), email varchar(100), password varchar(100), primary ke
+
+Query OK, 0 rows affected (0.15 sec)
+
+MariaDB [tickets]> show tables
+    -> ;
++-------------------+
+| Tables_in_tickets |
++-------------------+
+| summary           |
+| users             |
++-------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [tickets]> GRANT ALL on tickets.* TO 'tickets'@'localhost';
+Query OK, 0 rows affected (0.20 sec)
+
+MariaDB [tickets]> create user 'tickets'@'localhost';
+ERROR 1396 (HY000): Operation CREATE USER failed for 'tickets'@'localhost'
+MariaDB [tickets]> GRANT ALL on tickets.* TO 'tickets'@'localhost' identified by 
+'potatoFAMINE';
+Query OK, 0 rows affected (0.05 sec)
+
+MariaDB [tickets]> flush priveleges
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that c
+orresponds to your MariaDB server version for the right syntax to use near 'prive
+leges' at line 1int(2), primary key (id) );
+MariaDB [tickets]> flush privilege;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that c
+orresponds to your MariaDB server version for the right syntax to use near 'privi
+lege' at line 1
+MariaDB [tickets]> flush privileges;
+Query OK, 0 rows affected (0.10 sec)
+
+MariaDB [tickets]> Ctrl-C -- exit!
+Aborted
+root@rldeckard-VirtualBox:/var/www/html/ticket_tracker# mysql -u tickets
+ERROR 1045 (28000): Access denied for user 'tickets'@'localhost' (using password:
+ NO)
+root@rldeckard-VirtualBox:/var/www/html/ticket_tracker# mysql -u tickets -p potat
+oFAMINE
+Enter password: 
+ERROR 1044 (42000): Access denied for user 'tickets'@'localhost' to database 'pot
+atoFAMINE'
+root@rldeckard-VirtualBox:/var/www/html/ticket_tracker# mysql -u tickets -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 48
+Server version: 10.0.34-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    -> 
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| tickets            |
++--------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [(none)]> Ctrl-C -- exit!
+Aborted
+root@rldeckard-VirtualBox:/var/www/html/ticket_tracker# joe connectdb.php
+[7m    I A  connectdb.php (Modified)(php)  Row 7    Col 26   3:53  Ctrl-K H for help
+[32m<?[mphp
+[31m$servername[m = [36m"localhost"[m;
+[31m$username[m = [36m"tickets"[m;
+[31m$password[m = [36m"potatoFAMINE"[m;
+
+[32m// Create connection
+[31m$conn[m = [1mnew[m mysqli([31m$servername[m, [31m$username[m, [31m$password[m);
+
+
+
+
+
+
+
+
+
+
+
+
+

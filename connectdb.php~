@@ -1,0 +1,9 @@
+<?php
+$servername = "localhost";
+$username = "tickets";
+$password = "potatoFAMINE";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+?>
