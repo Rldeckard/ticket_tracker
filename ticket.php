@@ -33,10 +33,10 @@ if (strlen($_SESSION['username']) < 1) {
       </div>
       <div style="background-color:gray;margin:40px;border-radius:20px;box-shadow:5px 5px 10px 5px;">
       <?php
-        $data_q = mysqli_query($conn, "select * from tickets.summary;");
+        $data_q = mysqli_query($conn, "select * from tickets.summary WHERE ID =".$_GET['ID']);
         if (mysqli_num_rows($data_q) > 0) {
           while ($r = mysqli_fetch_assoc($data_q)) {
-            
+            print $r['description'];
 
           }
         }
