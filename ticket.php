@@ -24,7 +24,7 @@ if (strlen($_SESSION['username']) < 1) {
   </style>
 <body>
   <div>
-        <h1 style="background-color:grey;padding:15px;border-radius:15px 15px 0 0;position:relative;">Ticket#&nbsp;<?php print $_GET['ID']; print '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary: '.$_GET['Summary'].'</span>';?></h1>
+        <h1 style="background-color:grey;padding:15px;border-radius:15px 15px 0 0;position:relative;">Ticket#&nbsp;<?php print $_GET['ID']; print '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary: '.$_GET['Summary'].'</span>';?></h1>
 
     <div style="background-color:lightgray;position:relative;top:-26px;padding-bottom:30px">
       <hr>
