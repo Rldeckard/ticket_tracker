@@ -63,7 +63,7 @@ if (strlen($_SESSION['username']) < 1) {
                 default: $color = ''; break; //sets default table color to gray
               }
 
-              print '<td style="text-align:center;border:1px black solid;padding:10px;max-width:200px;overflow:hidden;background-color:'.$color.'">'.$r[$col].'</td>';
+              print '<td style="text-align:center;border:1px black solid;padding:10px;max-width:300px;overflow:hidden;background-color:'.$color.'">'.$r[$col].'</td>';
             }
             print '</tr>';
           }
