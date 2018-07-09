@@ -24,11 +24,12 @@ if (strlen($_SESSION['username']) < 1) {
   </style>
 <body>
   <div>
-    <h1 style="background-color:grey;padding:15px;border-radius:15px 15px 0 0;position:relative;">Ticket#&nbsp;<?php print $_GET['ID']; ?></h1>
+    <h1 style="background-color:grey;padding:15px;border-radius:15px 15px 0 0;position:relative;">Ticket#&nbsp;<?php print $_GET['ID']; print $_GET['Summary'];?></h1>
     <div style="background-color:lightgray;position:relative;top:-26px;padding-bottom:30px">
       <hr>
       <h2 style="padding:5px">Ticket View</h2>
       <div style="background-color:gray;margin:40px;height:200px;border-radius:20px;box-shadow:5px 5px 10px 5px;">
+      <h2>Comment Added</h2>
       <?php
         $data_q = mysqli_query($conn, "select * from tickets.summary WHERE ID =".$_GET['ID']);
         if (mysqli_num_rows($data_q) > 0) {

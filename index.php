@@ -1,5 +1,4 @@
 <?php
-//this is a test
 session_start();
 include('connectdb.php');
 $path = "/ticket_tracker";
@@ -54,7 +53,7 @@ if (strlen($_SESSION['username']) < 1) {
 <?php   $data_q = mysqli_query($conn, "select * from tickets.summary;");
         if (mysqli_num_rows($data_q) > 0) {
           while ($r = mysqli_fetch_assoc($data_q)) {
-?>          <tr onclick="window.location='ticket.php?ID=<?php print $r['id']; ?>'" >
+?>          <tr onclick="window.location='ticket.php?ID=<?php print $r['id']; ?>&Summary=<?php print $r['summary']; ?>'" >
 <?php
             foreach ($r_col as $col) {
               switch ($r[$col]) {
