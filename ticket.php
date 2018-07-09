@@ -31,7 +31,7 @@ if (strlen($_SESSION['username']) < 1) {
         $data_q = mysqli_query($conn, "select * from tickets.summary WHERE ID =".$_GET['ID']);
         if (mysqli_num_rows($data_q) > 0) {
           while ($r = mysqli_fetch_assoc($data_q)) {
-            print $r['description'];
+            print '<span style="padding-left: 20px">'.$r['description']."</span>";
           }
         }
 ?>
