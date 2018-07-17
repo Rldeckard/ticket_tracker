@@ -2,13 +2,17 @@
 session_start();
 include('connectdb.php');
 $path = "/ticket_tracker";
-if (strlen($_SESSION['username']) < 1) {
-  header('Location: login.php');
+if ($_GET['ID'] == '') {
+  if (strlen($_SESSION['username']) < 1) {
+    header('Location: portal.php');
+  }
+  print '<a style="text-align:right" href="logout.php">Logout</a>';
+} else {
+  print '<a style="text-align:right" href="portal.php">Back to Portal</a>';
 }
 ?>
 <html>
   <title>935TH S6 Ticket Tracker</title>
-  <a style="text-align:right" href="logout.php">Logout</a>
   <style>
 
     tr:hover {
@@ -50,7 +54,11 @@ if (strlen($_SESSION['username']) < 1) {
         }
 ?>
         </tr>
-<?php   $data_q = mysqli_query($conn, "select * from tickets.summary;");
+<?php   if ($_SESSION['tick_id'] != FALSE) {
+          $data_q = mysqli_query($conn, "select * from tickets.summary WHERE id = '".$_SESSION['tick_id']."';");
+        } else {
+          $data_q = mysqli_query($conn, "select * from tickets.summary;");
+        }
         if (mysqli_num_rows($data_q) > 0) {
           while ($r = mysqli_fetch_assoc($data_q)) {
 ?>          <tr onclick="window.location='ticket.php?ID=<?php print $r['id']."&Summary=".$r['summary']; ?>'" >
