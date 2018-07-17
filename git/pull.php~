@@ -1,0 +1,7 @@
+<?php
+
+chdir('..');
+print shell_exec('git pull');
+
+
+?>
