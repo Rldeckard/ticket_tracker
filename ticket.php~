@@ -2,7 +2,7 @@
 session_start();
 include('connectdb.php');
 if (strlen($_SESSION['username']) < 1) {
-  header('Location: portal.php');
+  header('Location: login.php');
 }
 ?>
 <html>

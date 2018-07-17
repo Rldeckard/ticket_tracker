@@ -18,3 +18,20 @@ Processing '/etc/joe/joerc'...
 Processing '/etc/joe/ftyperc'...
 Finished processing /etc/joe/ftyperc
 Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Mon Jul 16 17:32:22 2018
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+index.php
+index.php
+index.php
+index.php
+create_ticket.php
+create_ticket.php
+index.php
+index.php
+ticket.php
+ticket.php
+index.php
+index.php

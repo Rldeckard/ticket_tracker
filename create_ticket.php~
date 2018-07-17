@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start(); //starts page session. Required to transfer user info from login to this page using session variables.
 include ('connectdb.php'); //brings database connections to this page from the db file to make it easier than adding it to every page.
 ?>
@@ -36,14 +38,16 @@ span.input_form {
     </form>
     <?php
     if (isset($_POST['form_sub'])) {
-      $query = mysqli_query($conn, "INSERT INTO tickets.summary (summary, user, description) VALUES (".escapeshellarg($_POST['form_sum']).",".escapeshellarg($_POST['user']).",".escapeshellarg(trim($_POST['form_des'])).");");
+      $query = mysqli_query($conn, "INSERT INTO tickets.summary (summary, user, description, priority, status) VALUES (".escapeshellarg(trim($_POST['form_sum'])).",".escapeshellarg(trim($_POST['user'])).",".escapeshellarg(trim($_POST['form_des'])).",'3','Active');");
       if ($query == TRUE) {
         $q = mysqli_query($conn, "select id from tickets.summary WHERE ID = LAST_INSERT_ID();");
         while ($a = mysqli_fetch_assoc($q)) {
-          $tnum = $a['id'];
+          $_SESSION['tick_id'] = $a['id'];
         }
-        print "<script>alert('Your ticket number is ".$tnum.". Please save this number for checking ticket status through the ticketing portal.');</script>";
+        print "<script>alert('Your ticket number is ".$_SESSION['tick_id'].". Please save this number for checking ticket status through the ticketing portal.');</script>";
+        print '<meta http-equiv="refresh" content="0;url=index.php">';        
       } else {
+        print "<h1 style='color:red;text-align:center'>Ticket not submitted</h1>";
         print mysqli_error($query);
       }
     }

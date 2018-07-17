@@ -4,6 +4,7 @@ $username = "tickets";
 $password = "potatoFAMINE";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
-
+$conn = mysqli_connect($servername, $username, $password);
+$pre_query = mysqli_query($conn, "select * from ticket.users;");
+mysqli_error($pre_query);
 ?>
