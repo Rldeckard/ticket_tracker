@@ -1,0 +1,4 @@
+<?php
+print exec("git a .");
+print exec("git commit -m 'Web Commit' ");
+print exec("git push");
